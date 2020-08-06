@@ -23,7 +23,6 @@ class ChangePassword extends Component {
 
   onChangePassword = event => {
     event.preventDefault()
-
     const { msgAlert, history, user } = this.props
 
     changePassword(this.state, user)
@@ -45,7 +44,7 @@ class ChangePassword extends Component {
 
   render () {
     const { oldPassword, newPassword } = this.state
-
+    // console.log(this.props.user, 'wut user')
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
