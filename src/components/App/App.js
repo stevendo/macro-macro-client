@@ -10,6 +10,7 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
 import AddFood from '../Food/AddFood'
+import AllFood from '../Food/AllFood'
 
 class App extends Component {
   constructor () {
@@ -58,6 +59,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/add-food/' render={() => (
             <AddFood msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/foods/' render={() => (
+            <AllFood msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

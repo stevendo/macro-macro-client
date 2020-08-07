@@ -1,6 +1,18 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
+// Index Food
+// ==========
+export const foodIndex = (user) => {
+  return axios({
+    url: apiUrl + '/foods/',
+    method: 'GET',
+    headers: {
+      'Authorization': `Token ${user.data.token}`
+    }
+  })
+}
+
 // Add Food
 // ========
 export const foodCreate = (data, user) => {
