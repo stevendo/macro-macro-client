@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-// import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { foodDetail, foodDelete } from '../../api/food'
 import messages from '../AutoDismissAlert/messages'
+import Button from 'react-bootstrap/Button'
 
 class DetailFood extends Component {
   constructor (props) {
@@ -54,7 +54,9 @@ class DetailFood extends Component {
     if (this.state.deleted === true) {
       return <Redirect to='/foods' />
     }
+
     let jsx
+
     if (this.state.food === null) {
       jsx = <p>Loading ...</p>
     } else {
@@ -68,10 +70,25 @@ class DetailFood extends Component {
         </div>
       )
     }
+
+    const { owner } = this.state
+
+    let ownerButtons = ''
+    if (this.props.user && owner === this.props.user.id) {
+      ownerButtons = (
+        <div>
+          <Link to={`/foods/${this.props.match.params.id}/edit`}>
+            <Button variant="info">Edit Food</Button>
+          </Link>
+        </div>
+      )
+    }
+
     return (
       <div>
         <h2>Food Detail</h2>
         {jsx}
+        {ownerButtons}
       </div>
     )
   }

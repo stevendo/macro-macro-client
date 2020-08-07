@@ -54,12 +54,15 @@ export const foodDelete = (user, id) => {
 // PATCH Food
 // ===========
 export const foodEdit = (formData, foodId, user) => {
+  console.log(formData, 'wut is form data')
   return axios({
-    url: apiUrl + `/foods/${foodId}`,
+    url: apiUrl + `/foods/${foodId}/`,
     method: 'PATCH',
     headers: {
       'Authorization': `Token ${user.data.token}`
     },
-    data: formData
+    data: {
+      food: formData
+    }
   })
 }

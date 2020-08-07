@@ -12,6 +12,7 @@ import ChangePassword from './Auth/ChangePassword'
 import AddFood from './Food/AddFood'
 import AllFood from './Food/AllFood'
 import DetailFood from './Food/DetailFood'
+import EditFood from './Food/EditFood'
 
 class App extends Component {
   constructor () {
@@ -64,8 +65,11 @@ class App extends Component {
           <AuthenticatedRoute exact user={user} path='/foods/' render={() => (
             <AllFood msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/foods/:id' render={(props) => (
+          <AuthenticatedRoute exact user={user} path='/foods/:id' render={(props) => (
             <DetailFood {...props} msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/foods/:id/edit' render={(props) => (
+            <EditFood {...props} msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
