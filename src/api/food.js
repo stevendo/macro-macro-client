@@ -3,12 +3,13 @@ import axios from 'axios'
 
 // Add Food
 // ========
-export const addFood = (data, user) => {
+export const foodCreate = (data, user) => {
+  console.log(user, 'food api user')
   return axios({
     method: 'POST',
     url: apiUrl + '/foods/',
     headers: {
-      'Authorization': `Token ${user.token}`
+      'Authorization': `Token ${user.data.token}`
     },
     data: data
   })
