@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
 
 import { foodIndex } from '../../api/food'
@@ -47,7 +47,9 @@ class AllFood extends Component {
         {this.state.foods.map(food => {
           return (
             <li key={food.id}>
-              {food.name}: {food.fat}f {food.carb}c {food.protein}p
+              <Link to={`/foods/${food.id}`}>
+                {food.id}. {food.name}: {food.fat}f {food.carb}c {food.protein}p
+              </Link>
             </li>
           )
         })}

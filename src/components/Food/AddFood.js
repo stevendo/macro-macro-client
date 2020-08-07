@@ -30,7 +30,7 @@ addFood = event => {
   const { msgAlert, history, user } = this.props
   // let id = ''
 
-  foodCreate({ food: this.state }, user)
+  foodCreate(user, { food: this.state })
     .then(res => {
       // id = res.data.food._id
     })

@@ -1,16 +1,17 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 
-import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
-import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
-import Header from '../Header/Header'
-import SignUp from '../SignUp/SignUp'
-import SignIn from '../SignIn/SignIn'
-import SignOut from '../SignOut/SignOut'
-import ChangePassword from '../ChangePassword/ChangePassword'
+import AuthenticatedRoute from './AuthenticatedRoute/AuthenticatedRoute'
+import AutoDismissAlert from './AutoDismissAlert/AutoDismissAlert'
+import Header from './Header'
+import SignUp from './Auth/SignUp'
+import SignIn from './Auth/SignIn'
+import SignOut from './Auth/SignOut'
+import ChangePassword from './Auth/ChangePassword'
 
-import AddFood from '../Food/AddFood'
-import AllFood from '../Food/AllFood'
+import AddFood from './Food/AddFood'
+import AllFood from './Food/AllFood'
+import DetailFood from './Food/DetailFood'
 
 class App extends Component {
   constructor () {
@@ -60,8 +61,11 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/add-food/' render={() => (
             <AddFood msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/foods/' render={() => (
+          <AuthenticatedRoute exact user={user} path='/foods/' render={() => (
             <AllFood msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/foods/:id' render={(props) => (
+            <DetailFood {...props} msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
