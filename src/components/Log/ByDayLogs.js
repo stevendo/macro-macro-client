@@ -116,9 +116,9 @@ class ByDayLogs extends Component {
           <thead>
             <tr>
               <th>Total</th>
-              <th>{this.total('carb')}</th>
-              <th>{this.total('fat')}</th>
-              <th>{this.total('protein')}</th>
+              <th>{this.total('carb')} carbs</th>
+              <th>{this.total('fat')} fats</th>
+              <th>{this.total('protein')} protein</th>
             </tr>
           </thead>
         </Table>
