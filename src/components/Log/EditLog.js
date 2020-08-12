@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 // import { withRouter } from 'react-router-dom'
 
-import { foodEdit } from '../../api/food'
+import { logEdit } from '../../api/log'
 import messages from '../AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-class EditFood extends Component {
+class EditLog extends Component {
   constructor (props) {
     super(props)
-    console.log(this.props, 'wut props')
+    console.log(this.props, 'editlog')
     this.state = {
       name: this.props.location.state.name,
       carb: this.props.location.state.carb,
@@ -22,21 +22,21 @@ class EditFood extends Component {
     [event.target.name]: event.target.value
   })
 
-  onEditFood = event => {
+  onEditLog = event => {
     event.preventDefault()
 
     const { user, history, msgAlert, match } = this.props
-    foodEdit(this.state, match.params.id, user)
+    logEdit(this.state, match.params.id, user)
       .then(() => msgAlert({
         heading: 'Edit Success',
-        message: messages.foodEditSuccess,
+        message: messages.logEditSuccess,
         variant: 'success'
       }))
-      .then(() => history.push(`/foods/${match.params.id}`))
+      .then(() => history.push(`/logs/${match.params.id}`))
       .catch(error => {
         msgAlert({
           heading: 'Edit Failure: ' + error.message,
-          message: messages.foodEditFailure,
+          message: messages.logEditFailure,
           variant: 'danger'
         })
       })
@@ -44,11 +44,10 @@ class EditFood extends Component {
 
   render () {
     const { name, carb, fat, protein } = this.state
-    console.log(name, 'name')
     return (
       <div>
-        <h3>edit food</h3>
-        <Form onSubmit={this.onEditFood}>
+        <h3>edit log</h3>
+        <Form onSubmit={this.onEditLog}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
             <Form.Control
@@ -106,4 +105,4 @@ class EditFood extends Component {
   }
 }
 
-export default EditFood
+export default EditLog

@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import { foodDetail, foodDelete } from '../../api/food'
+import { logDetail, logDelete } from '../../api/log'
 import messages from '../AutoDismissAlert/messages'
 import Button from 'react-bootstrap/Button'
 
-class DetailFood extends Component {
+class DetailLog extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      food: null,
+      log: null,
       deleted: false
     }
   }
@@ -17,35 +17,36 @@ class DetailFood extends Component {
   componentDidMount () {
     const id = this.props.match.params.id
     const { user } = this.props
-    foodDetail(user, id)
+    logDetail(user, id)
       .then(res => {
         // console.log(res, 'wut is response')
         this.setState({
-          food: res.data,
+          log: res.data,
           deleted: false
         })
       })
       .catch(error => {
         this.setState({
-          food: null,
+          log: null,
           deleted: true
         })
         this.props.msgAlert({
-          heading: 'Could not find that food: ' + error.message,
+          heading: 'Could not find that log: ' + error.message,
           message: messages.detailFoodFailure,
           variant: 'danger'
         })
       })
   }
 
-  deleteFood = () => {
+  deleteLog = () => {
     const id = this.props.match.params.id
-    const { user } = this.props
-    foodDelete(user, id)
+    const { user, history } = this.props
+    logDelete(user, id)
       .then(response => {
         this.setState({
           deleted: true
         })
+        history.goBack()
       })
       .catch(console.error)
   }
@@ -57,18 +58,18 @@ class DetailFood extends Component {
 
     let jsx
 
-    if (this.state.food === null) {
+    if (this.state.log === null) {
       jsx = <p>Loading ...</p>
     } else {
       jsx = (
         <div>
-          <h3>{this.state.food.name}</h3>
-          <h4> has {this.state.food.carb}c</h4>
-          <h4> has {this.state.food.fat}f</h4>
-          <h4> has {this.state.food.protein}p</h4>
+          <h3>{this.state.log.name}</h3>
+          <h4> has {this.state.log.carb}c</h4>
+          <h4> has {this.state.log.fat}f</h4>
+          <h4> has {this.state.log.protein}p</h4>
           <Button
             variant="dark"
-            size="sm" onClick={this.deleteFood}>Delete</Button>
+            size="sm" onClick={this.deleteLog}>Delete</Button>
         </div>
       )
     }
@@ -80,9 +81,9 @@ class DetailFood extends Component {
       ownerButtons = (
         <div>
           <Link to={{
-            pathname: `/foods/${this.props.match.params.id}/edit`,
-            state: this.state.food }}>
-            <Button variant="dark" size="sm">Edit Food</Button>
+            pathname: `/logs/${this.props.match.params.id}/edit`,
+            state: this.state.log }}>
+            <Button variant="dark" size="sm">Edit Log</Button>
           </Link>
         </div>
       )
@@ -90,7 +91,7 @@ class DetailFood extends Component {
 
     return (
       <div>
-        <h2>Food Detail</h2>
+        <h2>Log Detail</h2>
         {jsx}
         <br/>
         {ownerButtons}
@@ -99,4 +100,4 @@ class DetailFood extends Component {
   }
 }
 
-export default DetailFood
+export default DetailLog

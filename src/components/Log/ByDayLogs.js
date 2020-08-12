@@ -26,11 +26,12 @@ class ByDayLogs extends Component {
     const { user } = this.props
     logByDay(user, year, month, day)
       .then(res => {
-        console.log(this.props.match.params, 'wut is response')
+        // console.log(this.props.match.params, 'wut is response')
         this.setState({
           logs: res.data,
           deleted: false
         })
+        console.log(this.state.logs, 'how many logs')
       })
       .catch(error => {
         this.setState({
@@ -45,13 +46,35 @@ class ByDayLogs extends Component {
       })
   }
 
+  // totalMacros = () => {
+  //   let totalc = 0
+  //   let totalf = 0
+  //   let totalp = 0
+  //   for (let i = 0; i < this.state.logs.length; i++) {
+  //     totalc += Number(this.state.logs[i].carb)
+  //     // console.log(totalc, 'totals')
+  //     totalf += Number(this.state.logs[i].fat)
+  //     totalp += Number(this.state.logs[i].protein)
+  //   }
+  //   // console.log(totalc, 'totals')
+  //   return (totalc, totalf, totalp)
+  // }
+
+  total = (macro) => {
+    let total = 0
+
+    for (let i = 0; i < this.state.logs.length; i++) {
+      total += parseFloat(this.state.logs[i][macro])
+    }
+    // console.log(total, 'is this total')
+    return total
+  }
+
   render () {
     // console.log(this.state.food, 'is this food')
     // if (this.state.deleted === true) {
     //   return <Redirect to='/foods' />
     // }
-
-    const { year, month, day } = this.props.match.params
 
     if (!this.state.logs) {
       return (
@@ -72,6 +95,8 @@ class ByDayLogs extends Component {
       )
     }
 
+    const { year, month, day } = this.props.match.params
+
     return (
       <div>
         <br/>
@@ -88,6 +113,14 @@ class ByDayLogs extends Component {
           <tbody>
             {this.state.logs.map(renderTable)}
           </tbody>
+          <thead>
+            <tr>
+              <th>Total</th>
+              <th>{this.total('carb')}</th>
+              <th>{this.total('fat')}</th>
+              <th>{this.total('protein')}</th>
+            </tr>
+          </thead>
         </Table>
       </div>
     )

@@ -60,7 +60,7 @@ class AllFood extends Component {
     const renderTable = (food, id) => {
       return (
         <tr key={id}>
-          <td><Link to={`/foods/${food.id}`}>{food.name}</Link></td>
+          <td><Link {...this.props} to={`/foods/${food.id}`}>{food.name}</Link></td>
           <td>{food.carb}</td>
           <td>{food.fat}</td>
           <td>{food.protein}</td>
@@ -72,6 +72,7 @@ class AllFood extends Component {
     return (
       <div>
         <br/>
+        <h3>my foods</h3>
         <Table striped borderless hover variant="light">
           <thead>
             <tr>

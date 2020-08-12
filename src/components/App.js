@@ -15,6 +15,8 @@ import DetailFood from './Food/DetailFood'
 import EditFood from './Food/EditFood'
 
 import ByDayLogs from './Log/ByDayLogs'
+import DetailLog from './Log/DetailLog'
+import EditLog from './Log/EditLog'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -77,6 +79,12 @@ class App extends Component {
           )} />
           <AuthenticatedRoute exact user={user} path='/logs/:year/:month/:day' render={(props) => (
             <ByDayLogs {...props} msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/logs/:id' render={(props) => (
+            <DetailLog {...props} msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/logs/:id/edit' render={(props) => (
+            <EditLog {...props} msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

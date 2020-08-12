@@ -55,7 +55,7 @@ render () {
 
   return (
     <div className="col-sm-10 col-md-8 mx-auto mt-5">
-      <h3>Add New Foods</h3>
+      <h3>add new foods</h3>
       <Form onSubmit={this.addFood}>
         <Form.Group controlId="name">
           <Form.Label>Food Item</Form.Label>
