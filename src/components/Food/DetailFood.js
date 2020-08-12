@@ -66,7 +66,9 @@ class DetailFood extends Component {
           <h4> has {this.state.food.carb}c</h4>
           <h4> has {this.state.food.fat}f</h4>
           <h4> has {this.state.food.protein}p</h4>
-          <button onClick={this.deleteFood}>Delete</button>
+          <Button
+            variant="dark"
+            size="sm" onClick={this.deleteFood}>Delete</Button>
         </div>
       )
     }
@@ -78,7 +80,7 @@ class DetailFood extends Component {
       ownerButtons = (
         <div>
           <Link to={`/foods/${this.props.match.params.id}/edit`}>
-            <Button variant="info">Edit Food</Button>
+            <Button variant="dark" size="sm">Edit Food</Button>
           </Link>
         </div>
       )
@@ -88,6 +90,7 @@ class DetailFood extends Component {
       <div>
         <h2>Food Detail</h2>
         {jsx}
+        <br/>
         {ownerButtons}
       </div>
     )

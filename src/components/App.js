@@ -14,6 +14,10 @@ import AllFood from './Food/AllFood'
 import DetailFood from './Food/DetailFood'
 import EditFood from './Food/EditFood'
 
+import ByDayLogs from './Log/ByDayLogs'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 class App extends Component {
   constructor () {
     super()
@@ -70,6 +74,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute exact user={user} path='/foods/:id/edit' render={(props) => (
             <EditFood {...props} msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/logs/:year/:month/:day' render={(props) => (
+            <ByDayLogs {...props} msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
