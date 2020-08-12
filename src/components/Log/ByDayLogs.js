@@ -31,7 +31,7 @@ class ByDayLogs extends Component {
           logs: res.data,
           deleted: false
         })
-        console.log(this.state.logs, 'how many logs')
+        // console.log(this.state.logs.length, 'how many logs')
       })
       .catch(error => {
         this.setState({
@@ -45,20 +45,6 @@ class ByDayLogs extends Component {
         })
       })
   }
-
-  // totalMacros = () => {
-  //   let totalc = 0
-  //   let totalf = 0
-  //   let totalp = 0
-  //   for (let i = 0; i < this.state.logs.length; i++) {
-  //     totalc += Number(this.state.logs[i].carb)
-  //     // console.log(totalc, 'totals')
-  //     totalf += Number(this.state.logs[i].fat)
-  //     totalp += Number(this.state.logs[i].protein)
-  //   }
-  //   // console.log(totalc, 'totals')
-  //   return (totalc, totalf, totalp)
-  // }
 
   total = (macro) => {
     let total = 0
@@ -100,14 +86,14 @@ class ByDayLogs extends Component {
     return (
       <div>
         <br/>
-        <h2>Food Log for {month}/{day}/{year}</h2>
+        <h2>macros for {month}/{day}/{year}</h2>
         <Table striped borderless hover variant="dark">
           <thead>
             <tr>
               <th>Name</th>
-              <th>Carbs</th>
-              <th>Fats</th>
-              <th>Protein</th>
+              <th>Carbs (g)</th>
+              <th>Fats (g)</th>
+              <th>Protein (g)</th>
             </tr>
           </thead>
           <tbody>
